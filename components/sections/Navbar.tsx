@@ -3,10 +3,12 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { navLinks } from "@/lib/data";
+import LoginModal from "@/components/sections/LoginModal";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -53,12 +55,42 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <a
-          href="#contact"
-          className="hidden rounded-full bg-gold-gradient px-6 py-2.5 text-xs font-semibold uppercase tracking-[0.14em] text-ink-900 shadow-glow-gold transition-transform hover:scale-105 md:inline-flex"
-        >
-          Reserve Now
-        </a>
+        <div className="hidden items-center gap-3 md:flex">
+          {/* Login — guides only */}
+          <div className="group relative">
+            <button
+              onClick={() => setLoginOpen(true)}
+              className="inline-flex items-center gap-2 rounded-full border border-neon/50 bg-neon/10 px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.14em] text-neon shadow-glow-neon transition-all hover:scale-105 hover:bg-neon/20"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                <polyline points="10 17 15 12 10 7" />
+                <line x1="15" y1="12" x2="3" y2="12" />
+              </svg>
+              Login
+            </button>
+            {/* Guides-only note */}
+            <span className="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap rounded-full border border-neon/30 bg-ink-800 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.18em] text-neon opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              For guides only
+            </span>
+          </div>
+
+          <a
+            href="#contact"
+            className="rounded-full bg-gold-gradient px-6 py-2.5 text-xs font-semibold uppercase tracking-[0.14em] text-ink-900 shadow-glow-gold transition-transform hover:scale-105"
+          >
+            Reserve Now
+          </a>
+        </div>
 
         {/* Mobile toggle */}
         <button
@@ -109,6 +141,20 @@ export default function Navbar() {
                 </li>
               ))}
               <li>
+                <button
+                  onClick={() => {
+                    setOpen(false);
+                    setLoginOpen(true);
+                  }}
+                  className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl border border-neon/50 bg-neon/10 px-4 py-3 text-center text-sm font-semibold uppercase tracking-wide text-neon"
+                >
+                  Login
+                </button>
+                <p className="mt-1.5 text-center text-[10px] font-medium uppercase tracking-[0.2em] text-neon/70">
+                  For guides only
+                </p>
+              </li>
+              <li>
                 <a
                   href="#contact"
                   onClick={() => setOpen(false)}
@@ -121,6 +167,8 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} />
     </motion.header>
   );
 }
