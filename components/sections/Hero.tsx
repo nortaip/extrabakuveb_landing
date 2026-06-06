@@ -140,7 +140,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 1.1 }}
           className="mt-10 flex flex-col items-center gap-4 sm:flex-row"
         >
-          <MagneticButton href="#reservation" variant="gold">
+          <MagneticButton href="#contact" variant="gold">
             Reserve Now
           </MagneticButton>
           <MagneticButton href="#experiences" variant="ghost">

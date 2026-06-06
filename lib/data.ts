@@ -321,20 +321,16 @@ export const navLinks = [
   { label: "Experiences", href: "#experiences" },
   { label: "Gallery", href: "#gallery" },
   { label: "Events", href: "#events" },
-  { label: "Venue", href: "#venue" },
   { label: "FAQ", href: "#faq" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export const siteConfig = {
   name: "Extra Baku Club",
   phone: "+994 12 555 00 99",
   email: "reservations@extrabaku.az",
-  address: "28 Mall District, Baku, Azerbaijan",
-  hours: [
-    { day: "Mon – Thu", time: "12:00 — 02:00" },
-    { day: "Fri – Sat", time: "12:00 — 03:00" },
-    { day: "Sunday", time: "12:00 — 01:00" },
-  ],
+  address: "CV57+44R, Baku",
+  hours: [{ day: "Every Day", time: "20:00 — 06:00" }],
   socials: [
     { label: "Instagram", href: "https://instagram.com" },
     { label: "Facebook", href: "https://facebook.com" },

@@ -8,7 +8,10 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden border-t border-white/5 pt-20">
+    <footer
+      id="contact"
+      className="relative overflow-hidden border-t border-white/5 pt-20 scroll-mt-24"
+    >
       {/* Giant ambient wordmark */}
       <div
         aria-hidden
@@ -73,7 +76,7 @@ export default function Footer() {
               ))}
               <li>
                 <a
-                  href="#reservation"
+                  href={`tel:${siteConfig.phone.replace(/\s/g, "")}`}
                   className="font-general text-sm text-white/55 transition-colors hover:text-gold-light"
                 >
                   Reservations

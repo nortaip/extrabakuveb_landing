@@ -67,11 +67,11 @@ const jsonLd = {
   telephone: "+994 12 555 00 99",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "28 Mall District",
+    streetAddress: "CV57+44R",
     addressLocality: "Baku",
     addressCountry: "AZ",
   },
-  openingHours: "Mo-Su 12:00-03:00",
+  openingHours: "Mo-Su 20:00-06:00",
 };
 
 export default function RootLayout({

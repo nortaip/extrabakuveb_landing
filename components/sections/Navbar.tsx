@@ -54,7 +54,7 @@ export default function Navbar() {
         </ul>
 
         <a
-          href="#reservation"
+          href="#contact"
           className="hidden rounded-full bg-gold-gradient px-6 py-2.5 text-xs font-semibold uppercase tracking-[0.14em] text-ink-900 shadow-glow-gold transition-transform hover:scale-105 md:inline-flex"
         >
           Reserve Now
@@ -110,7 +110,7 @@ export default function Navbar() {
               ))}
               <li>
                 <a
-                  href="#reservation"
+                  href="#contact"
                   onClick={() => setOpen(false)}
                   className="mt-2 block rounded-xl bg-gold-gradient px-4 py-3 text-center text-sm font-semibold uppercase tracking-wide text-ink-900"
                 >

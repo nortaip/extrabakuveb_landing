@@ -60,7 +60,7 @@ export default function Events() {
                   {event.description}
                 </p>
                 <a
-                  href="#reservation"
+                  href="#contact"
                   className="mt-4 inline-flex w-fit items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold-light opacity-0 transition-all duration-500 group-hover:opacity-100"
                 >
                   Enquire now <span>→</span>
