@@ -107,8 +107,7 @@ export const eventCards: EventCard[] = [
     title: "Corporate Events",
     description:
       "Conferences, team-building and gala dinners with full AV production.",
-    image:
-      "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80",
+    image: "/club/club-4.jpg",
     tag: "Business",
   },
   {
@@ -125,8 +124,7 @@ export const eventCards: EventCard[] = [
     title: "Private Celebrations",
     description:
       "Exclusive VIP suites and full-venue buyouts for your inner circle.",
-    image:
-      "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=80",
+    image: "/club/club-3.jpg",
     tag: "Exclusive",
   },
 ];
@@ -295,16 +293,27 @@ export const faqs: Faq[] = [
   },
 ];
 
+/**
+ * Real Extra Baku club photos.
+ * Place the matching files in `public/club/` (see public/club/README.md).
+ */
+export const clubImages = {
+  hero: "/club/club-1.jpg",
+  showcase: "/club/club-2.jpg",
+  laserCrowd: "/club/club-3.jpg",
+  bar: "/club/club-4.jpg",
+} as const;
+
 export const galleryImages: string[] = [
+  clubImages.hero,
+  clubImages.showcase,
+  clubImages.laserCrowd,
+  clubImages.bar,
   "https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?auto=format&fit=crop&w=900&q=80",
   "https://images.unsplash.com/photo-1545128485-c400e7702796?auto=format&fit=crop&w=900&q=80",
-  "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=900&q=80",
   "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=900&q=80",
   "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=900&q=80",
-  "https://images.unsplash.com/photo-1574391884720-bbc3740c59d1?auto=format&fit=crop&w=900&q=80",
   "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=80",
-  "https://images.unsplash.com/photo-1438557068880-c5f474830377?auto=format&fit=crop&w=900&q=80",
-  "https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&w=900&q=80",
   "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=900&q=80",
 ];
 
