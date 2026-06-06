@@ -3,12 +3,10 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { navLinks } from "@/lib/data";
-import LoginModal from "@/components/sections/LoginModal";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [loginOpen, setLoginOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -56,10 +54,12 @@ export default function Navbar() {
         </ul>
 
         <div className="hidden items-center gap-3 md:flex">
-          {/* Login — guides only */}
+          {/* Login — guides only (redirects to the guide portal) */}
           <div className="group relative">
-            <button
-              onClick={() => setLoginOpen(true)}
+            <a
+              href="https://login.extrabaku.az/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-neon/50 bg-neon/10 px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.14em] text-neon shadow-glow-neon transition-all hover:scale-105 hover:bg-neon/20"
             >
               <svg
@@ -77,19 +77,12 @@ export default function Navbar() {
                 <line x1="15" y1="12" x2="3" y2="12" />
               </svg>
               Login
-            </button>
+            </a>
             {/* Guides-only note */}
             <span className="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap rounded-full border border-neon/30 bg-ink-800 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.18em] text-neon opacity-0 transition-opacity duration-300 group-hover:opacity-100">
               For guides only
             </span>
           </div>
-
-          <a
-            href="#contact"
-            className="rounded-full bg-gold-gradient px-6 py-2.5 text-xs font-semibold uppercase tracking-[0.14em] text-ink-900 shadow-glow-gold transition-transform hover:scale-105"
-          >
-            Reserve Now
-          </a>
         </div>
 
         {/* Mobile toggle */}
@@ -141,34 +134,23 @@ export default function Navbar() {
                 </li>
               ))}
               <li>
-                <button
-                  onClick={() => {
-                    setOpen(false);
-                    setLoginOpen(true);
-                  }}
+                <a
+                  href="https://login.extrabaku.az/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setOpen(false)}
                   className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl border border-neon/50 bg-neon/10 px-4 py-3 text-center text-sm font-semibold uppercase tracking-wide text-neon"
                 >
                   Login
-                </button>
+                </a>
                 <p className="mt-1.5 text-center text-[10px] font-medium uppercase tracking-[0.2em] text-neon/70">
                   For guides only
                 </p>
-              </li>
-              <li>
-                <a
-                  href="#contact"
-                  onClick={() => setOpen(false)}
-                  className="mt-2 block rounded-xl bg-gold-gradient px-4 py-3 text-center text-sm font-semibold uppercase tracking-wide text-ink-900"
-                >
-                  Reserve Now
-                </a>
               </li>
             </ul>
           </motion.div>
         )}
       </AnimatePresence>
-
-      <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} />
     </motion.header>
   );
 }
