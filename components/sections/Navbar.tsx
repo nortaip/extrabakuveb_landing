@@ -95,7 +95,7 @@ export default function Navbar() {
           aria-expanded={open}
           className="flex h-10 w-10 items-center justify-center rounded-full glass md:hidden"
         >
-          <div className="relative h-4 w-5">
+          <span className="relative block h-4 w-5">
             <span
               className={`absolute left-0 h-0.5 w-5 bg-white transition-all duration-300 ${
                 open ? "top-1.5 rotate-45" : "top-0"
@@ -111,7 +111,7 @@ export default function Navbar() {
                 open ? "top-1.5 -rotate-45" : "top-3"
               }`}
             />
-          </div>
+          </span>
         </button>
       </nav>
 

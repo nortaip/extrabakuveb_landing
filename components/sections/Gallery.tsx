@@ -72,7 +72,7 @@ export default function Gallery() {
                 sizes="(max-width: 768px) 50vw, 25vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink-900/70 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+              <span className="absolute inset-0 block bg-gradient-to-t from-ink-900/70 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               <span className="absolute bottom-3 left-3 flex h-9 w-9 translate-y-2 items-center justify-center rounded-full glass text-white opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
                 ⤢
               </span>
