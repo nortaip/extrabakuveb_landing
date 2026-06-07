@@ -98,8 +98,7 @@ export const eventCards: EventCard[] = [
     title: "Birthday Parties",
     description:
       "Show-stopping birthday productions with custom décor, cake and entertainment.",
-    image:
-      "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1200&q=80",
+    image: "/club/club-1.png",
     tag: "Celebrate",
   },
   {
@@ -115,8 +114,7 @@ export const eventCards: EventCard[] = [
     title: "Family Entertainment",
     description:
       "A universe of fun for all ages — bowling, arcade, dining and more.",
-    image:
-      "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80",
+    image: "/club/club-5.jpg",
     tag: "Together",
   },
   {
@@ -124,7 +122,7 @@ export const eventCards: EventCard[] = [
     title: "Private Celebrations",
     description:
       "Exclusive VIP suites and full-venue buyouts for your inner circle.",
-    image: "/club/club-3.jpg",
+    image: "/club/club-3.png",
     tag: "Exclusive",
   },
 ];
@@ -298,10 +296,12 @@ export const faqs: Faq[] = [
  * Place the matching files in `public/club/` (see public/club/README.md).
  */
 export const clubImages = {
-  hero: "/club/club-1.jpg",
-  showcase: "/club/club-2.jpg",
-  laserCrowd: "/club/club-3.jpg",
+  hero: "/club/club-1.png",
+  showcase: "/club/club-2.png",
+  laserCrowd: "/club/club-3.png",
   bar: "/club/club-4.jpg",
+  lounge: "/club/club-5.jpg",
+  vip: "/club/club-6.jpg",
 } as const;
 
 export const galleryImages: string[] = [
@@ -309,21 +309,17 @@ export const galleryImages: string[] = [
   clubImages.showcase,
   clubImages.laserCrowd,
   clubImages.bar,
-  "https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?auto=format&fit=crop&w=900&q=80",
-  "https://images.unsplash.com/photo-1545128485-c400e7702796?auto=format&fit=crop&w=900&q=80",
-  "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=900&q=80",
-  "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=900&q=80",
-  "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=80",
-  "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=900&q=80",
+  clubImages.lounge,
+  clubImages.vip,
 ];
 
 export const instagramPosts: string[] = [
-  "https://images.unsplash.com/photo-1571266028243-d220c9c3b31e?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1581974944026-5d6ed762f617?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1496337589254-7e19d01cec44?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1485872299829-c673f5194813?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1578736641330-3155e606cd40?auto=format&fit=crop&w=600&q=80",
+  clubImages.hero,
+  clubImages.showcase,
+  clubImages.laserCrowd,
+  clubImages.bar,
+  clubImages.lounge,
+  clubImages.vip,
 ];
 
 export const navLinks = [
@@ -336,8 +332,6 @@ export const navLinks = [
 
 export const siteConfig = {
   name: "Extra Baku Club",
-  phone: "+994 12 555 00 99",
-  email: "reservations@extrabaku.az",
   address: "CV57+44R, Baku",
   hours: [{ day: "Every Day", time: "20:00 — 06:00" }],
   socials: [

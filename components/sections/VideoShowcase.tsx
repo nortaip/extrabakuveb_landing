@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
-const SHOWCASE_POSTER = "/club/club-2.jpg";
+const SHOWCASE_POSTER = "/club/club-2.png";
 const SHOWCASE_VIDEO =
   "https://cdn.coverr.co/videos/coverr-people-dancing-in-a-nightclub-2480/1080p.mp4";
 

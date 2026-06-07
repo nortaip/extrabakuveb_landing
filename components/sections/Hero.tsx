@@ -13,7 +13,7 @@ import ParticleField from "@/components/ui/ParticleField";
 import SpotlightBeams from "@/components/ui/SpotlightBeams";
 import { wordReveal } from "@/lib/animations";
 
-const HERO_POSTER = "/club/club-1.jpg";
+const HERO_POSTER = "/club/club-1.png";
 const HERO_VIDEO =
   "https://cdn.coverr.co/videos/coverr-a-dj-mixing-music-at-a-party-4853/1080p.mp4";
 

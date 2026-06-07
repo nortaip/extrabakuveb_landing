@@ -34,7 +34,7 @@ export const metadata: Metadata = {
       "Azerbaijan's largest premium entertainment destination. Bowling, arcade, karaoke, dining, lounge & events.",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?auto=format&fit=crop&w=1200&q=80",
+        url: "/club/club-1.png",
         width: 1200,
         height: 630,
         alt: "Extra Baku Club",
@@ -64,7 +64,6 @@ const jsonLd = {
   description:
     "Azerbaijan's premier entertainment & nightlife destination featuring bowling, arcade, karaoke, dining, lounge bar and events.",
   url: SITE_URL,
-  telephone: "+994 12 555 00 99",
   address: {
     "@type": "PostalAddress",
     streetAddress: "CV57+44R",

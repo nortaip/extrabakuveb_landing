@@ -74,14 +74,6 @@ export default function Footer() {
                   </a>
                 </li>
               ))}
-              <li>
-                <a
-                  href={`tel:${siteConfig.phone.replace(/\s/g, "")}`}
-                  className="font-general text-sm text-white/55 transition-colors hover:text-gold-light"
-                >
-                  Reservations
-                </a>
-              </li>
             </ul>
           </motion.div>
 
@@ -103,35 +95,44 @@ export default function Footer() {
             </ul>
           </motion.div>
 
-          {/* Contact */}
+          {/* Find Us */}
           <motion.div variants={fadeUp}>
             <h4 className="font-heading text-sm font-semibold uppercase tracking-[0.16em] text-white">
-              Contact
+              Find Us
             </h4>
-            <ul className="mt-5 flex flex-col gap-3 font-general text-sm text-white/55">
-              <li>
+            <p className="mt-5 font-general text-sm text-white/70">
+              {siteConfig.address}
+            </p>
+            <div className="group relative mt-4 overflow-hidden rounded-2xl border border-white/10 bg-black/40 shadow-[0_20px_60px_-30px_rgba(0,0,0,0.8)] transition-all duration-300 hover:border-gold/40">
+              <div className="relative h-40 w-full">
+                <iframe
+                  title="Extra Baku Club location"
+                  src={`https://www.google.com/maps?q=${encodeURIComponent(
+                    siteConfig.address,
+                  )}&z=15&output=embed`}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="pointer-events-none h-full w-full border-0 [filter:invert(0.92)_hue-rotate(180deg)_saturate(0.6)_brightness(0.95)_contrast(0.95)]"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                 <a
-                  href={`tel:${siteConfig.phone.replace(/\s/g, "")}`}
-                  className="transition-colors hover:text-gold-light"
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                    siteConfig.address,
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open in Google Maps"
+                  className="absolute inset-0 flex items-end justify-end p-3 font-general text-[10px] uppercase tracking-[0.18em] text-white/60 transition-colors hover:text-gold-light"
                 >
-                  {siteConfig.phone}
+                  Open in Maps →
                 </a>
-              </li>
-              <li>
-                <a
-                  href={`mailto:${siteConfig.email}`}
-                  className="transition-colors hover:text-gold-light"
-                >
-                  {siteConfig.email}
-                </a>
-              </li>
-              <li className="text-white/70">{siteConfig.address}</li>
-            </ul>
+              </div>
+            </div>
           </motion.div>
         </motion.div>
 
         <div className="flex flex-col items-center justify-between gap-4 border-t border-white/5 py-8 sm:flex-row">
-          <p className="font-general text-xs text-white/40">
+          <p className="font-general text-xs text-white/40" suppressHydrationWarning>
             © {year} {siteConfig.name}. All rights reserved.
           </p>
           <div className="flex gap-6 font-general text-xs text-white/40">
