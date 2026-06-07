@@ -135,6 +135,10 @@ export default function Footer() {
           <p className="font-general text-xs text-white/40" suppressHydrationWarning>
             © {year} {siteConfig.name}. All rights reserved.
           </p>
+          <p className="font-general text-xs text-white/40">
+            Developed by{" "}
+            <span className="font-semibold text-gold-gradient">Senate Group</span>
+          </p>
           <div className="flex gap-6 font-general text-xs text-white/40">
             <a href="#" className="transition-colors hover:text-white/70">
               Privacy Policy

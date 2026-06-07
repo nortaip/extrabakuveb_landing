@@ -133,9 +133,9 @@ export default function Hero() {
           The Ultimate Entertainment Experience
         </motion.p>
         <p className="sr-only">
-          Extra Baku Club — Bakının ən böyük premium əyləncə və gecə klubu.
-          Bowling, karaoke, arcade, restoran, lounge bar və canlı tədbirlər bir
-          məkanda. Doğum günü, korporativ və VIP tədbirlər üçün rezervasiya.
+          Extra Baku Club — Qafqazın ən böyük premium gecə klubu. Lounge bar,
+          canlı musiqi, DJ-lər, billiards və VIP zonalar bir məkanda. Doğum
+          günü, korporativ və VIP tədbirlər üçün rezervasiya.
         </p>
 
         <motion.div

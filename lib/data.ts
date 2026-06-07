@@ -59,10 +59,9 @@ export type Stat = {
 };
 
 export const stats: Stat[] = [
-  { value: 32, suffix: "", label: "Bowling Lanes" },
   { value: 60, suffix: "K+", label: "Guests Monthly" },
-  { value: 12, suffix: "", label: "Premium Zones" },
-  { value: 300, suffix: "+", label: "Corporate Events / Year" },
+  { value: 50, suffix: "+", label: "Premium Zones" },
+  { value: 300, suffix: "+", label: "Events / Year" },
 ];
 
 export type EventCard = {
@@ -94,7 +93,7 @@ export const eventCards: EventCard[] = [
     id: "family",
     title: "Entertainment",
     description:
-      "A universe of fun for all ages — bowling, arcade, dining and more.",
+      "A universe of music, dining and electric energy across every premium zone.",
     image: "/club/club-5.jpg",
     tag: "Together",
   },
@@ -148,10 +147,10 @@ export const testimonials: Testimonial[] = [
   {
     id: "t4",
     name: "Emin Qasimov",
-    role: "Family Visitor",
+    role: "Regular Guest",
     rating: 5,
     quote:
-      "Brought the whole family — bowling, arcade, dinner. Everyone left smiling. World-class venue.",
+      "The production, the music, the crowd — nothing in the region comes close. World-class nightclub.",
     initials: "EQ",
   },
   {
