@@ -125,15 +125,6 @@ function ExperienceCard({ exp, index }: { exp: Experience; index: number }) {
           {exp.description}
         </p>
       </div>
-
-      <span
-        className={`relative z-10 mt-7 inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/50 transition-all duration-300 group-hover:border-white/20 ${a.text}`}
-      >
-        Discover
-        <span className="transition-transform duration-300 group-hover:translate-x-1">
-          →
-        </span>
-      </span>
     </motion.a>
   );
 }

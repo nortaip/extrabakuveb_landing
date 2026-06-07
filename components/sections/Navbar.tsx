@@ -43,6 +43,9 @@ export default function Navbar() {
             <li key={link.href}>
               <a
                 href={link.href}
+                {...(link.external
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
                 className="relative font-general text-sm text-white/70 transition-colors hover:text-white"
               >
                 <span className="after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-gold after:transition-all after:duration-300 hover:after:w-full">
@@ -126,6 +129,9 @@ export default function Navbar() {
                 <li key={link.href}>
                   <a
                     href={link.href}
+                    {...(link.external
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
                     onClick={() => setOpen(false)}
                     className="block rounded-xl px-4 py-3 font-general text-white/80 transition-colors hover:bg-white/5 hover:text-white"
                   >

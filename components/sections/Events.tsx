@@ -59,12 +59,6 @@ export default function Events() {
                 <p className="mt-2 max-w-md font-general text-sm text-white/60 transition-all duration-500 group-hover:text-white/80">
                   {event.description}
                 </p>
-                <a
-                  href="#contact"
-                  className="mt-4 inline-flex w-fit items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold-light opacity-0 transition-all duration-500 group-hover:opacity-100"
-                >
-                  Enquire now <span>→</span>
-                </a>
               </div>
             </motion.article>
           ))}

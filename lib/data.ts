@@ -302,9 +302,72 @@ export const instagramPosts: string[] = [
   clubImages.vip,
 ];
 
-export const navLinks = [
+/** Full drinks & food menu (opens the Senate Group PDF). */
+export const menuUrl = "https://senategroup.az/menu/menu.pdf";
+
+export type Cocktail = {
+  id: string;
+  name: string;
+  notes: string;
+  price: string;
+  accent: "gold" | "royal" | "neon";
+};
+
+export const cocktails: Cocktail[] = [
+  {
+    id: "baku-royale",
+    name: "Baku Royale",
+    notes: "Champagne · saffron · gold leaf · citrus mist",
+    price: "₼28",
+    accent: "gold",
+  },
+  {
+    id: "neon-nights",
+    name: "Neon Nights",
+    notes: "Vodka · blue curaçao · lime · tonic glow",
+    price: "₼22",
+    accent: "neon",
+  },
+  {
+    id: "purple-haze",
+    name: "Purple Haze",
+    notes: "Gin · violet liqueur · wild berries · prosecco",
+    price: "₼24",
+    accent: "royal",
+  },
+  {
+    id: "velvet-noir",
+    name: "Velvet Noir",
+    notes: "Espresso · vanilla vodka · dark cacao",
+    price: "₼25",
+    accent: "gold",
+  },
+  {
+    id: "caspian-sunset",
+    name: "Caspian Sunset",
+    notes: "Aged rum · pomegranate · spiced syrup",
+    price: "₼23",
+    accent: "neon",
+  },
+  {
+    id: "midnight-orchid",
+    name: "Midnight Orchid",
+    notes: "Tequila · elderflower · lychee · smoke",
+    price: "₼26",
+    accent: "royal",
+  },
+];
+
+export type NavLink = {
+  label: string;
+  href: string;
+  external?: boolean;
+};
+
+export const navLinks: NavLink[] = [
   { label: "Experiences", href: "#experiences" },
   { label: "Gallery", href: "#gallery" },
+  { label: "Menu", href: menuUrl, external: true },
   { label: "Events", href: "#events" },
   { label: "Contact", href: "#contact" },
 ];

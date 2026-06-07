@@ -6,6 +6,7 @@ import VideoShowcase from "@/components/sections/VideoShowcase";
 import Gallery from "@/components/sections/Gallery";
 import WhyExtraBaku from "@/components/sections/WhyExtraBaku";
 import Events from "@/components/sections/Events";
+import Cocktails from "@/components/sections/Cocktails";
 import Testimonials from "@/components/sections/Testimonials";
 import InstagramWall from "@/components/sections/InstagramWall";
 import Footer from "@/components/sections/Footer";
@@ -22,6 +23,7 @@ export default function Home() {
         <Gallery />
         <WhyExtraBaku />
         <Events />
+        <Cocktails />
         <Testimonials />
         <InstagramWall />
       </main>
