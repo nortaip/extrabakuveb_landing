@@ -67,7 +67,7 @@ export default function Gallery() {
             >
               <Image
                 src={src}
-                alt={`Extra Baku gallery ${i + 1}`}
+                alt={`Extra Baku Club Bakı — qalereya foto ${i + 1}`}
                 fill
                 sizes="(max-width: 768px) 50vw, 25vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -121,7 +121,7 @@ export default function Gallery() {
             >
               <Image
                 src={galleryImages[index]}
-                alt={`Extra Baku gallery ${index + 1}`}
+                alt={`Extra Baku Club Bakı gecə klubu — foto ${index + 1}`}
                 fill
                 sizes="90vw"
                 className="object-contain"

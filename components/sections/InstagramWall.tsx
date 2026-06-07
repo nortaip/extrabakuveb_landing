@@ -33,7 +33,7 @@ export default function InstagramWall() {
             >
               <Image
                 src={src}
-                alt={`Extra Baku Instagram post ${i + 1}`}
+                alt={`Extra Baku Club Instagram — Bakı əyləncə klubu ${i + 1}`}
                 fill
                 sizes="(max-width: 768px) 33vw, 16vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
