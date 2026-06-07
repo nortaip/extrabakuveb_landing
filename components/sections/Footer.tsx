@@ -61,9 +61,9 @@ export default function Footer() {
 
           {/* Explore */}
           <motion.div variants={fadeUp}>
-            <h4 className="font-heading text-sm font-semibold uppercase tracking-[0.16em] text-white">
+            <h3 className="font-heading text-sm font-semibold uppercase tracking-[0.16em] text-white">
               Explore
-            </h4>
+            </h3>
             <ul className="mt-5 flex flex-col gap-3">
               {navLinks.map((link) => (
                 <li key={link.href}>
@@ -83,9 +83,9 @@ export default function Footer() {
 
           {/* Hours */}
           <motion.div variants={fadeUp}>
-            <h4 className="font-heading text-sm font-semibold uppercase tracking-[0.16em] text-white">
+            <h3 className="font-heading text-sm font-semibold uppercase tracking-[0.16em] text-white">
               Working Hours
-            </h4>
+            </h3>
             <ul className="mt-5 flex flex-col gap-3">
               {siteConfig.hours.map((h) => (
                 <li
@@ -101,9 +101,9 @@ export default function Footer() {
 
           {/* Find Us */}
           <motion.div variants={fadeUp}>
-            <h4 className="font-heading text-sm font-semibold uppercase tracking-[0.16em] text-white">
+            <h3 className="font-heading text-sm font-semibold uppercase tracking-[0.16em] text-white">
               Find Us
-            </h4>
+            </h3>
             <p className="mt-5 font-general text-sm text-white/70">
               {siteConfig.address}
             </p>

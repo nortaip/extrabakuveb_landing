@@ -57,7 +57,7 @@ export const metadata: Metadata = {
       "World-class nightlife, VIP lounges, premium cocktails, live DJs and exclusive events in the heart of Baku, Azerbaijan.",
     images: [
       {
-        url: "/club/club-1.png",
+        url: "/club/og.jpg",
         width: 1200,
         height: 630,
         alt: "Extra Baku — the largest premium nightclub in the Caucasus",
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     title: "Extra Baku – The Largest Premium Nightclub in the Caucasus",
     description:
       "Night Club Baku — world-class nightlife, VIP lounges, premium cocktails and live DJs. Reserve your night at the best night club in Baku.",
-    images: ["/club/club-1.png"],
+    images: ["/club/og.jpg"],
   },
   robots: {
     index: true,
@@ -107,8 +107,8 @@ const jsonLd = {
   description:
     "Extra Baku is the largest premium nightclub in the Caucasus — a luxury nightlife destination in Baku, Azerbaijan with VIP lounges, a premium lounge bar, live DJs, live music, signature cocktails and exclusive events.",
   url: SITE_URL,
-  image: [`${SITE_URL}/club/club-1.png`, `${SITE_URL}/club/club-2.png`],
-  logo: `${SITE_URL}/club/club-1.png`,
+  image: [`${SITE_URL}/club/club-1.webp`, `${SITE_URL}/club/club-2.webp`],
+  logo: `${SITE_URL}/club/club-1.webp`,
   priceRange: "$$$",
   address: {
     "@type": "PostalAddress",
@@ -171,8 +171,8 @@ const organizationJsonLd = {
   name: "Extra Baku Club",
   alternateName: "Extra Baku",
   url: SITE_URL,
-  logo: `${SITE_URL}/club/club-1.png`,
-  image: `${SITE_URL}/club/club-1.png`,
+  logo: `${SITE_URL}/club/club-1.webp`,
+  image: `${SITE_URL}/club/club-1.webp`,
   description:
     "Extra Baku is the largest premium nightclub in the Caucasus — a luxury nightlife destination in Baku, Azerbaijan with VIP lounges, live DJs, signature cocktails and exclusive events.",
   areaServed: ["Baku", "Azerbaijan", "Caucasus"],
@@ -241,7 +241,7 @@ const eventsJsonLd = [
   doorTime: "20:00",
   organizer: { "@id": `${SITE_URL}/#organization` },
   location: { "@id": `${SITE_URL}/#business` },
-  image: `${SITE_URL}/club/club-3.png`,
+  image: `${SITE_URL}/club/club-3.webp`,
   offers: {
     "@type": "Offer",
     url: SITE_URL,

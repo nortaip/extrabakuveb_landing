@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
-const SHOWCASE_POSTER = "/club/club-2.png";
+const SHOWCASE_POSTER = "/club/club-2.webp";
 const SHOWCASE_VIDEO =
   "https://cdn.coverr.co/videos/coverr-people-dancing-in-a-nightclub-2480/1080p.mp4";
 
@@ -54,8 +54,10 @@ export default function VideoShowcase() {
             playsInline
             poster={SHOWCASE_POSTER}
             preload="none"
+            aria-label="Extra Baku cinematic showcase video"
           >
             <source src={SHOWCASE_VIDEO} type="video/mp4" />
+            <track kind="captions" srcLang="en" label="English" src="/captions/empty.vtt" default />
           </video>
           <div className="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/30 to-transparent" />
 
@@ -122,6 +124,7 @@ export default function VideoShowcase() {
                 poster={SHOWCASE_POSTER}
               >
                 <source src={SHOWCASE_VIDEO} type="video/mp4" />
+                <track kind="captions" srcLang="en" label="English" src="/captions/empty.vtt" default />
               </video>
             </motion.div>
           </motion.div>

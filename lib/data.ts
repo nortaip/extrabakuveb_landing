@@ -78,7 +78,7 @@ export const eventCards: EventCard[] = [
     title: "Birthday Parties",
     description:
       "Show-stopping birthday productions with custom décor, cake and entertainment.",
-    image: "/club/club-1.png",
+    image: "/club/club-1.webp",
     tag: "Celebrate",
   },
   {
@@ -86,7 +86,7 @@ export const eventCards: EventCard[] = [
     title: "Corporate Events",
     description:
       "Conferences, team-building and gala dinners with full AV production.",
-    image: "/club/club-4.jpg",
+    image: "/club/club-4.webp",
     tag: "Business",
   },
   {
@@ -94,7 +94,7 @@ export const eventCards: EventCard[] = [
     title: "Entertainment",
     description:
       "A universe of music, dining and electric energy across every premium zone.",
-    image: "/club/club-5.jpg",
+    image: "/club/club-5.webp",
     tag: "Together",
   },
   {
@@ -102,7 +102,7 @@ export const eventCards: EventCard[] = [
     title: "Private Celebrations",
     description:
       "Exclusive VIP suites and full-venue buyouts for your inner circle.",
-    image: "/club/club-3.png",
+    image: "/club/club-3.webp",
     tag: "Exclusive",
   },
 ];
@@ -312,12 +312,12 @@ export const faqs: Faq[] = [
  * Place the matching files in `public/club/` (see public/club/README.md).
  */
 export const clubImages = {
-  hero: "/club/club-1.png",
-  showcase: "/club/club-2.png",
-  laserCrowd: "/club/club-3.png",
-  bar: "/club/club-4.jpg",
-  lounge: "/club/club-5.jpg",
-  vip: "/club/club-6.jpg",
+  hero: "/club/club-1.webp",
+  showcase: "/club/club-2.webp",
+  laserCrowd: "/club/club-3.webp",
+  bar: "/club/club-4.webp",
+  lounge: "/club/club-5.webp",
+  vip: "/club/club-6.webp",
 } as const;
 
 export const galleryImages: string[] = [

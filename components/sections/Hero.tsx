@@ -13,7 +13,7 @@ import ParticleField from "@/components/ui/ParticleField";
 import SpotlightBeams from "@/components/ui/SpotlightBeams";
 import { wordReveal } from "@/lib/animations";
 
-const HERO_POSTER = "/club/club-1.png";
+const HERO_POSTER = "/club/club-1.webp";
 const HERO_VIDEO =
   "https://cdn.coverr.co/videos/coverr-a-dj-mixing-music-at-a-party-4853/1080p.mp4";
 
@@ -60,9 +60,11 @@ export default function Hero() {
           loop
           playsInline
           poster={HERO_POSTER}
-          preload="metadata"
+          preload="none"
+          aria-label="Extra Baku nightclub atmosphere video"
         >
           <source src={HERO_VIDEO} type="video/mp4" />
+          <track kind="captions" srcLang="en" label="English" src="/captions/empty.vtt" default />
         </video>
       </motion.div>
 
