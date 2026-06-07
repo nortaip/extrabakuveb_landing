@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { siteConfig, navLinks } from "@/lib/data";
+import { SocialIcon } from "@/components/ui/socialIcons";
 import { fadeUp, staggerContainer, viewportOnce } from "@/lib/animations";
 
 export default function Footer() {
@@ -49,10 +50,10 @@ export default function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-full glass text-xs font-medium text-white/70 transition-all duration-300 hover:scale-110 hover:border-gold/40 hover:text-gold-light"
-                  aria-label={social.label}
+                  className="flex h-11 w-11 items-center justify-center rounded-full glass text-white/70 transition-all duration-300 hover:scale-110 hover:border-gold/40 hover:text-gold-light"
+                  aria-label={`Extra Baku on ${social.label}`}
                 >
-                  {social.label.charAt(0)}
+                  <SocialIcon label={social.label} />
                 </a>
               ))}
             </div>

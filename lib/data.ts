@@ -235,15 +235,15 @@ export type Faq = {
 export const faqs: Faq[] = [
   {
     id: "f1",
-    question: "How do I make a reservation at Extra Baku?",
+    question: "How can I visit Extra Baku?",
     answer:
-      "Reservations for the best night club in Baku can be made through our reservation team via the contact section, by phone or by direct message on social media. Booking in advance is strongly recommended for weekends and special live music nights.",
+      "Extra Baku, the best night club in Baku, welcomes guests every night from 20:00 to 06:00. Simply come by — on weekends and special live music nights we recommend arriving early, as the largest nightclub in the Caucasus fills up fast.",
   },
   {
     id: "f2",
-    question: "How do I reserve a VIP table?",
+    question: "How do VIP tables work?",
     answer:
-      "VIP tables and private lounges are available with bottle service and a dedicated host. Contact our team to reserve a VIP table — capacity, minimum spend and package options are tailored to your group and the night you choose.",
+      "VIP tables and private lounges come with bottle service and a dedicated host. Message us on social media or speak to our team at the venue — capacity, minimum spend and package options are tailored to your group and the night you choose.",
   },
   {
     id: "f3",
@@ -352,7 +352,7 @@ export const contentBlocks: ContentBlock[] = [
       "With world-class sound, cinematic lighting and a crowd that defines the best nightlife in Baku, Extra Baku turns an ordinary evening into a headline night. This is the premium nightlife destination locals love and visitors travel for.",
     ],
     image: clubImages.laserCrowd,
-    cta: { label: "Reserve Your Night", href: "#contact" },
+    cta: { label: "View Gallery", href: "#gallery" },
     accent: "royal",
   },
   {
@@ -365,7 +365,11 @@ export const contentBlocks: ContentBlock[] = [
       "Whether you're celebrating with friends or hosting a private group, our VIP service blends discretion, premium spirits and impeccable hospitality for a truly exclusive night.",
     ],
     image: clubImages.bar,
-    cta: { label: "Reserve a VIP Table", href: "#contact" },
+    cta: {
+      label: "View the Menu",
+      href: "https://senategroup.az/menu/menu.pdf",
+      external: true,
+    },
     accent: "gold",
   },
   {

@@ -66,9 +66,9 @@ export default function Faq() {
       <div className="container-max relative z-10">
         <SectionHeading
           eyebrow="Good To Know"
-          title="Nightclub & reservation"
+          title="Nightclub"
           highlight="FAQ"
-          description="Everything you need to know about reservations, VIP tables, events and visiting the largest premium nightclub in the Caucasus."
+          description="Everything you need to know about visiting, VIP tables, dress code and events at the largest premium nightclub in the Caucasus."
         />
 
         <motion.div

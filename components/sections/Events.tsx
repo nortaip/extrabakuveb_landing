@@ -63,27 +63,6 @@ export default function Events() {
             </motion.article>
           ))}
         </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={viewportOnce}
-          transition={{ duration: 0.7 }}
-          className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row"
-        >
-          <a
-            href="#contact"
-            className="rounded-full bg-gold-gradient px-8 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-ink-900 shadow-glow-gold transition-transform hover:scale-105"
-          >
-            Book a Private Event
-          </a>
-          <a
-            href="#contact"
-            className="rounded-full glass px-8 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-white/10"
-          >
-            Contact Our Event Team
-          </a>
-        </motion.div>
       </div>
     </section>
   );
