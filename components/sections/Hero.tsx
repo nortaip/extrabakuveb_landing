@@ -103,39 +103,52 @@ export default function Hero() {
           className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-5 py-2 text-xs font-medium uppercase tracking-[0.35em] text-gold-light backdrop-blur-md"
         >
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-gold" />
-          Baku · Azerbaijan
+          The Largest Nightclub in the Caucasus
         </motion.span>
 
-        <h1 className="font-display text-[18vw] font-bold leading-[0.85] tracking-tight text-white sm:text-[14vw] lg:text-[11rem]">
-          {title.map((word, i) => (
-            <span key={word} className="block overflow-hidden">
-              <motion.span
-                variants={wordReveal}
-                initial="hidden"
-                animate="visible"
-                transition={{ delay: 0.4 + i * 0.18 }}
-                className={`inline-block ${
-                  i === 1 ? "text-gold-gradient" : ""
-                }`}
-              >
-                {word}
-              </motion.span>
-            </span>
-          ))}
+        <h1 className="font-display font-bold leading-[0.85] tracking-tight text-white">
+          <span className="block text-[18vw] sm:text-[14vw] lg:text-[11rem]">
+            {title.map((word, i) => (
+              <span key={word} className="block overflow-hidden">
+                <motion.span
+                  variants={wordReveal}
+                  initial="hidden"
+                  animate="visible"
+                  transition={{ delay: 0.4 + i * 0.18 }}
+                  className={`inline-block ${
+                    i === 1 ? "text-gold-gradient" : ""
+                  }`}
+                >
+                  {word}
+                </motion.span>
+              </span>
+            ))}
+          </span>
+          <motion.span
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.85 }}
+            className="mt-4 block font-heading text-xl font-semibold leading-tight text-white/90 sm:text-2xl md:text-3xl"
+          >
+            The Largest Premium Nightclub in the Caucasus
+          </motion.span>
         </h1>
 
         <motion.p
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
-          className="mt-6 max-w-xl font-general text-lg text-white/70 md:text-xl"
+          transition={{ duration: 0.8, delay: 0.95 }}
+          className="mt-6 max-w-2xl font-general text-base text-white/70 md:text-lg"
         >
-          The Ultimate Entertainment Experience
+          Experience world-class nightlife, VIP lounges, premium cocktails, live
+          DJs, unforgettable events and luxury entertainment in the heart of
+          Baku.
         </motion.p>
         <p className="sr-only">
-          Extra Baku Club — Qafqazın ən böyük premium gecə klubu. Lounge bar,
-          canlı musiqi, DJ-lər, billiards və VIP zonalar bir məkanda. Doğum
-          günü, korporativ və VIP tədbirlər üçün rezervasiya.
+          Extra Baku is the best night club in Baku and the largest premium
+          nightclub in the Caucasus — a luxury nightlife destination in
+          Azerbaijan featuring VIP lounges, a premium lounge bar, live DJs, live
+          music, signature cocktails and exclusive events.
         </p>
 
         <motion.div
@@ -144,7 +157,10 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 1.1 }}
           className="mt-10 flex flex-col items-center gap-4 sm:flex-row"
         >
-          <MagneticButton href="#experiences" variant="gold">
+          <MagneticButton href="#contact" variant="gold">
+            Reserve Your Night
+          </MagneticButton>
+          <MagneticButton href="#nightlife" variant="ghost">
             Explore Experiences
           </MagneticButton>
         </motion.div>

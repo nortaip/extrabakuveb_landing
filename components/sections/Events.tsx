@@ -22,10 +22,10 @@ export default function Events() {
       />
       <div className="container-max relative z-10">
         <SectionHeading
-          eyebrow="Host With Us"
-          title="Events crafted to"
-          highlight="impress"
-          description="Whatever the occasion, our dedicated event team turns your vision into a headline-worthy production."
+          eyebrow="Private & Corporate Events"
+          title="The premier event venue"
+          highlight="in Baku"
+          description="From private celebrations and birthday parties to corporate events and exclusive bookings, Extra Baku is the luxury event venue in Baku where our dedicated team turns your vision into a headline-worthy night."
         />
 
         <motion.div
@@ -62,6 +62,27 @@ export default function Events() {
               </div>
             </motion.article>
           ))}
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewportOnce}
+          transition={{ duration: 0.7 }}
+          className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row"
+        >
+          <a
+            href="#contact"
+            className="rounded-full bg-gold-gradient px-8 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-ink-900 shadow-glow-gold transition-transform hover:scale-105"
+          >
+            Book a Private Event
+          </a>
+          <a
+            href="#contact"
+            className="rounded-full glass px-8 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-white/10"
+          >
+            Contact Our Event Team
+          </a>
         </motion.div>
       </div>
     </section>

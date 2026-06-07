@@ -235,39 +235,75 @@ export type Faq = {
 export const faqs: Faq[] = [
   {
     id: "f1",
-    question: "What are the opening hours of Extra Baku Club?",
+    question: "How do I make a reservation at Extra Baku?",
     answer:
-      "We are open daily from 12:00 PM until 03:00 AM. Weekend nights (Friday & Saturday) often run later for special events and live performances.",
+      "Reservations for the best night club in Baku can be made through our reservation team via the contact section, by phone or by direct message on social media. Booking in advance is strongly recommended for weekends and special live music nights.",
   },
   {
     id: "f2",
-    question: "Do I need a reservation?",
+    question: "How do I reserve a VIP table?",
     answer:
-      "Walk-ins are welcome, but reservations are strongly recommended for bowling lanes, karaoke suites, dining and VIP areas — especially on weekends.",
+      "VIP tables and private lounges are available with bottle service and a dedicated host. Contact our team to reserve a VIP table — capacity, minimum spend and package options are tailored to your group and the night you choose.",
   },
   {
     id: "f3",
-    question: "Is Extra Baku family-friendly?",
+    question: "Is there a dress code?",
     answer:
-      "Absolutely. Daytime hours are perfect for families with bowling, arcade and dining. Evening hours transition into a premium nightlife atmosphere.",
+      "Yes. Extra Baku is a premium nightlife destination, so we recommend stylish, elegant attire. Smart and fashionable dress is expected; sportswear and beachwear are not permitted in the club and VIP lounge areas.",
   },
   {
     id: "f4",
-    question: "Can I host a corporate or private event?",
+    question: "What are your opening hours?",
     answer:
-      "Yes. We offer fully customisable packages for corporate events, birthdays and private celebrations — including full-venue buyouts and dedicated event managers.",
+      "Extra Baku is open every day from 20:00 until 06:00. Doors and peak hours vary by night, with live DJs and live music keeping the energy going until the early morning.",
   },
   {
     id: "f5",
-    question: "Is there a dress code?",
+    question: "Where is Extra Baku located?",
     answer:
-      "Smart-casual is recommended. For VIP lounge and evening events we encourage elegant attire to match the venue's premium atmosphere.",
+      "Extra Baku is located in the heart of Baku, Azerbaijan (Plus Code CV57+44R, Baku). It is the largest premium nightclub in the Caucasus and is easily reachable from the city centre, with valet parking available.",
   },
   {
     id: "f6",
-    question: "Do you offer parking?",
+    question: "Can I host a private event or celebration?",
     answer:
-      "Complimentary secure valet and self-parking are available for all guests directly at the venue.",
+      "Absolutely. We host private celebrations, birthday parties and exclusive gatherings with custom décor, dedicated service, bespoke cocktail menus and full or partial venue buyouts. Our event team will craft every detail around your vision.",
+  },
+  {
+    id: "f7",
+    question: "Do you organise corporate events?",
+    answer:
+      "Yes. Extra Baku is a premier corporate event venue in Baku, offering gala dinners, product launches, team celebrations and exclusive bookings with full AV production, premium catering and a dedicated event manager.",
+  },
+  {
+    id: "f8",
+    question: "When are your live music and DJ nights?",
+    answer:
+      "Resident and guest DJs perform throughout the week, with special live music and headline events on weekends. Follow us on social media for the latest line-ups, themed nights and exclusive performances.",
+  },
+  {
+    id: "f9",
+    question: "Is there a minimum age to enter?",
+    answer:
+      "Extra Baku is an adults-only nightlife venue. Guests must be 18 or older and may be asked to present valid photo ID at the entrance.",
+  },
+  {
+    id: "f10",
+    question: "Do you offer bottle service and premium cocktails?",
+    answer:
+      "Yes. Our lounge bar serves signature cocktails crafted by award-winning mixologists, premium spirits and full bottle service at VIP tables. Explore the full drinks menu or ask your host for recommendations.",
+  },
+  {
+    id: "f11",
+    question: "Is parking available?",
+    answer:
+      "Complimentary secure valet and self-parking are available for guests directly at the venue, so you can arrive and leave with ease.",
+  },
+  {
+    id: "f12",
+    question: "What makes Extra Baku the best nightclub in Baku?",
+    answer:
+      "Extra Baku combines the largest premium nightclub space in the Caucasus with world-class sound and lighting, VIP lounges, signature cocktails, live DJs and an unmatched atmosphere — delivering a luxury nightlife experience found nowhere else in Azerbaijan.",
   },
 ];
 
@@ -291,6 +327,60 @@ export const galleryImages: string[] = [
   clubImages.bar,
   clubImages.lounge,
   clubImages.vip,
+];
+
+/** SEO-rich alternating content blocks positioning Extra Baku as a nightclub. */
+export type ContentBlock = {
+  id: string;
+  eyebrow: string;
+  title: string;
+  highlight: string;
+  paragraphs: string[];
+  image: string;
+  cta: { label: string; href: string; external?: boolean };
+  accent: "gold" | "royal" | "neon";
+};
+
+export const contentBlocks: ContentBlock[] = [
+  {
+    id: "nightlife",
+    eyebrow: "Nightlife in Baku",
+    title: "The ultimate nightlife",
+    highlight: "experience in Baku",
+    paragraphs: [
+      "Extra Baku is the beating heart of nightlife in Baku — the largest premium nightclub in the Caucasus and the definitive luxury club experience in Azerbaijan. From the first beat to the last, every night is engineered for energy, glamour and unforgettable moments.",
+      "With world-class sound, cinematic lighting and a crowd that defines the best nightlife in Baku, Extra Baku turns an ordinary evening into a headline night. This is the premium nightlife destination locals love and visitors travel for.",
+    ],
+    image: clubImages.laserCrowd,
+    cta: { label: "Reserve Your Night", href: "#contact" },
+    accent: "royal",
+  },
+  {
+    id: "vip",
+    eyebrow: "VIP Lounge & Service",
+    title: "VIP lounges &",
+    highlight: "premium service",
+    paragraphs: [
+      "Step into a VIP lounge in Baku reserved for those who expect more. Our exclusive club tables come with bottle service, a dedicated host and the best views of the main floor — the luxury entertainment Baku is known for.",
+      "Whether you're celebrating with friends or hosting a private group, our VIP service blends discretion, premium spirits and impeccable hospitality for a truly exclusive night.",
+    ],
+    image: clubImages.bar,
+    cta: { label: "Reserve a VIP Table", href: "#contact" },
+    accent: "gold",
+  },
+  {
+    id: "music",
+    eyebrow: "Live DJs & Music",
+    title: "Live DJs &",
+    highlight: "music events",
+    paragraphs: [
+      "Extra Baku is the home of live DJs in Baku and the city's most electric live music nights. Resident and international guest artists deliver sets that keep the floor moving until 06:00, backed by a sound system built for impact.",
+      "From signature club nights to exclusive headline events, this is where premium nightlife and live entertainment in Baku come together.",
+    ],
+    image: clubImages.showcase,
+    cta: { label: "Explore Events", href: "#events" },
+    accent: "neon",
+  },
 ];
 
 export const instagramPosts: string[] = [
@@ -333,10 +423,11 @@ export type NavLink = {
 };
 
 export const navLinks: NavLink[] = [
-  { label: "Experiences", href: "#experiences" },
+  { label: "Nightlife", href: "#nightlife" },
   { label: "Gallery", href: "#gallery" },
   { label: "Menu", href: menuUrl, external: true },
   { label: "Events", href: "#events" },
+  { label: "FAQ", href: "#faq" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -345,9 +436,8 @@ export const siteConfig = {
   address: "CV57+44R, Baku",
   hours: [{ day: "Every Day", time: "20:00 — 06:00" }],
   socials: [
-    { label: "Instagram", href: "https://instagram.com" },
-    { label: "Facebook", href: "https://facebook.com" },
-    { label: "TikTok", href: "https://tiktok.com" },
-    { label: "YouTube", href: "https://youtube.com" },
+    { label: "Instagram", href: "https://www.instagram.com/extrabaku" },
+    { label: "TikTok", href: "https://www.tiktok.com/@extrabaku?lang=en" },
+    { label: "YouTube", href: "https://www.youtube.com/@extrabaku" },
   ],
 };

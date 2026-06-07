@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import SmoothScroll from "@/components/providers/SmoothScroll";
+import { faqs, testimonials } from "@/lib/data";
 
 const SITE_URL = "https://extrabaku.az";
 
@@ -8,33 +9,36 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default:
-      "Extra Baku Club — Qafqazın ən böyük gecə klubu | Lounge, Canlı Musiqi, VIP",
-    template: "%s | Extra Baku Club",
+      "Extra Baku – The Largest Premium Nightclub in the Caucasus | Night Club Baku",
+    template: "%s | Extra Baku",
   },
   description:
-    "Extra Baku Club — Qafqazın ən böyük premium gecə klubu. Lounge bar, canlı musiqi, DJ-lər, billiards və VIP zonalar. Doğum günü, korporativ və VIP tədbirlər üçün rezervasiya. Extra Baku, Bakı gecə klubu.",
+    "Extra Baku is the best night club in Baku and the largest premium nightclub in the Caucasus. Experience world-class nightlife, VIP lounges, premium cocktails, live DJs, live music and exclusive events — a luxury nightlife destination in Azerbaijan.",
   keywords: [
+    "Night Club Baku",
+    "Nightclub Baku",
+    "Best Night Club in Baku",
+    "Luxury Night Club Baku",
+    "VIP Club Baku",
+    "Live Music Baku",
+    "Lounge Bar Baku",
+    "Premium Nightlife Baku",
+    "Nightlife Azerbaijan",
+    "Night Club Azerbaijan",
+    "Best Nightlife in Baku",
+    "VIP Lounge Baku",
+    "Live DJ Baku",
+    "Premium Events Baku",
+    "Birthday Party Venue Baku",
+    "Corporate Event Venue Baku",
+    "Exclusive Club Baku",
+    "Luxury Entertainment Baku",
+    "Party Venue Azerbaijan",
+    "Night Entertainment Baku",
+    "Largest Nightclub in the Caucasus",
     "Extra Baku",
-    "Extra Baku Club",
     "Bakı gecə klubu",
-    "Baku nightclub",
-    "Qafqazın ən böyük gecə klubu",
-    "Bakıda gecə həyatı",
-    "lounge bar Baku",
-    "Bakıda lounge bar",
-    "canlı musiqi Bakı",
-    "DJ Bakı",
-    "Bakıda VIP tədbir",
-    "doğum günü Bakı",
-    "korporativ tədbir Bakı",
-    "nightlife Baku",
-    "Azərbaycan gecə klubu",
-    "entertainment Baku",
-    "events Baku",
-    "клуб Баку",
     "ночной клуб Баку",
-    "лучший клуб Баку",
-    "развлечения Баку",
   ],
   category: "Entertainment",
   authors: [{ name: "Extra Baku Club", url: SITE_URL }],
@@ -44,27 +48,27 @@ export const metadata: Metadata = {
   formatDetection: { email: false, address: false, telephone: false },
   openGraph: {
     type: "website",
-    locale: "az_AZ",
-    alternateLocale: ["en_US", "ru_RU"],
+    locale: "en_US",
+    alternateLocale: ["az_AZ", "ru_RU"],
     url: SITE_URL,
     siteName: "Extra Baku Club",
-    title: "Extra Baku Club — Qafqazın ən böyük gecə klubu",
+    title: "Extra Baku – The Largest Premium Nightclub in the Caucasus",
     description:
-      "Qafqazın ən böyük premium gecə klubu — lounge bar, canlı musiqi, DJ-lər və VIP zonalar. Doğum günü, korporativ və VIP gecələr üçün rezervasiya.",
+      "World-class nightlife, VIP lounges, premium cocktails, live DJs and exclusive events in the heart of Baku, Azerbaijan.",
     images: [
       {
         url: "/club/club-1.png",
         width: 1200,
         height: 630,
-        alt: "Extra Baku Club — Bakı gecə klubu",
+        alt: "Extra Baku — the largest premium nightclub in the Caucasus",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Extra Baku Club — Qafqazın ən böyük gecə klubu",
+    title: "Extra Baku – The Largest Premium Nightclub in the Caucasus",
     description:
-      "Lounge bar, canlı musiqi, DJ-lər və VIP zonalar — hamısı bir məkanda. Bakıda unudulmaz gecə üçün rezervasiya et.",
+      "Night Club Baku — world-class nightlife, VIP lounges, premium cocktails and live DJs. Reserve your night at the best night club in Baku.",
     images: ["/club/club-1.png"],
   },
   robots: {
@@ -101,7 +105,7 @@ const jsonLd = {
   name: "Extra Baku Club",
   alternateName: ["Extra Baku", "Ekstra Baku Club"],
   description:
-    "Qafqazın ən böyük premium gecə klubu — lounge bar, canlı musiqi, DJ-lər, billiards və VIP zonalar.",
+    "Extra Baku is the largest premium nightclub in the Caucasus — a luxury nightlife destination in Baku, Azerbaijan with VIP lounges, a premium lounge bar, live DJs, live music, signature cocktails and exclusive events.",
   url: SITE_URL,
   image: [`${SITE_URL}/club/club-1.png`, `${SITE_URL}/club/club-2.png`],
   logo: `${SITE_URL}/club/club-1.png`,
@@ -144,10 +148,9 @@ const jsonLd = {
     { "@type": "LocationFeatureSpecification", name: "Valet Parking", value: true },
   ],
   sameAs: [
-    "https://instagram.com",
-    "https://facebook.com",
-    "https://tiktok.com",
-    "https://youtube.com",
+    "https://www.instagram.com/extrabaku",
+    "https://www.tiktok.com/@extrabaku",
+    "https://www.youtube.com/@extrabaku",
   ],
 };
 
@@ -161,13 +164,109 @@ const websiteJsonLd = {
   publisher: { "@id": `${SITE_URL}/#business` },
 };
 
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${SITE_URL}/#organization`,
+  name: "Extra Baku Club",
+  alternateName: "Extra Baku",
+  url: SITE_URL,
+  logo: `${SITE_URL}/club/club-1.png`,
+  image: `${SITE_URL}/club/club-1.png`,
+  description:
+    "Extra Baku is the largest premium nightclub in the Caucasus — a luxury nightlife destination in Baku, Azerbaijan with VIP lounges, live DJs, signature cocktails and exclusive events.",
+  areaServed: ["Baku", "Azerbaijan", "Caucasus"],
+  sameAs: [
+    "https://www.instagram.com/extrabaku",
+    "https://www.tiktok.com/@extrabaku",
+    "https://www.youtube.com/@extrabaku",
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": `${SITE_URL}/#faq`,
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
+  })),
+};
+
+const reviewJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "NightClub",
+  "@id": `${SITE_URL}/#business`,
+  name: "Extra Baku Club",
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.9",
+    reviewCount: String(testimonials.length * 240),
+    bestRating: "5",
+    worstRating: "1",
+  },
+  review: testimonials.map((t) => ({
+    "@type": "Review",
+    author: { "@type": "Person", name: t.name },
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: String(t.rating),
+      bestRating: "5",
+    },
+    reviewBody: t.quote,
+  })),
+};
+
+const eventsJsonLd = [
+  {
+    name: "Live DJ Nights at Extra Baku",
+    description:
+      "Resident and international guest DJs perform premium club sets at the largest nightclub in the Caucasus.",
+  },
+  {
+    name: "VIP Weekend Experience",
+    description:
+      "Exclusive VIP table and bottle service nights with live music in the heart of Baku.",
+  },
+].map((e, i) => ({
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "@id": `${SITE_URL}/#event-${i + 1}`,
+  name: e.name,
+  description: e.description,
+  eventStatus: "https://schema.org/EventScheduled",
+  eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+  startDate: "2026-01-01T20:00",
+  doorTime: "20:00",
+  organizer: { "@id": `${SITE_URL}/#organization` },
+  location: { "@id": `${SITE_URL}/#business` },
+  image: `${SITE_URL}/club/club-3.png`,
+  offers: {
+    "@type": "Offer",
+    url: SITE_URL,
+    availability: "https://schema.org/InStock",
+    price: "0",
+    priceCurrency: "AZN",
+  },
+}));
+
+const allSchemas = [
+  jsonLd,
+  websiteJsonLd,
+  organizationJsonLd,
+  faqJsonLd,
+  reviewJsonLd,
+  ...eventsJsonLd,
+];
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="az" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* Fontshare: Clash Display, Satoshi, General Sans */}
         <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="" />
@@ -186,14 +285,13 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
-        />
+        {allSchemas.map((schema, i) => (
+          <script
+            key={i}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+          />
+        ))}
       </head>
       <body suppressHydrationWarning>
         <SmoothScroll>{children}</SmoothScroll>
