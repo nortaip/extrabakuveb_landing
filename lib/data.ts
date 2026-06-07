@@ -10,6 +10,7 @@ export type Experience = {
   title: string;
   description: string;
   accent: "gold" | "royal" | "neon";
+  href: string;
 };
 
 export const experiences: Experience[] = [
@@ -20,30 +21,7 @@ export const experiences: Experience[] = [
     description:
       "Tournament-grade tables under cinematic lighting — pure precision and prestige.",
     accent: "gold",
-  },
-  {
-    id: "arcade",
-    icon: "🎮",
-    title: "Arcade Games",
-    description:
-      "150+ next-gen machines and immersive simulators for every generation.",
-    accent: "neon",
-  },
-  {
-    id: "karaoke",
-    icon: "🎤",
-    title: "Karaoke",
-    description:
-      "Private soundproof suites with studio acoustics and 50K+ track library.",
-    accent: "royal",
-  },
-  {
-    id: "restaurant",
-    icon: "🍽",
-    title: "Restaurant",
-    description:
-      "Signature cuisine crafted by award-winning chefs in a refined setting.",
-    accent: "gold",
+    href: "#gallery",
   },
   {
     id: "lounge",
@@ -52,6 +30,7 @@ export const experiences: Experience[] = [
     description:
       "Master mixologists, rare spirits and a skyline of golden ambiance.",
     accent: "neon",
+    href: "#gallery",
   },
   {
     id: "events",
@@ -60,6 +39,7 @@ export const experiences: Experience[] = [
     description:
       "Bespoke celebrations engineered for unforgettable, headline nights.",
     accent: "royal",
+    href: "#events",
   },
   {
     id: "live-music",
@@ -68,6 +48,7 @@ export const experiences: Experience[] = [
     description:
       "Resident DJs and live acts that keep the energy electric until dawn.",
     accent: "gold",
+    href: "#events",
   },
 ];
 
@@ -79,7 +60,7 @@ export type Stat = {
 
 export const stats: Stat[] = [
   { value: 32, suffix: "", label: "Bowling Lanes" },
-  { value: 25, suffix: "K+", label: "Guests Monthly" },
+  { value: 60, suffix: "K+", label: "Guests Monthly" },
   { value: 12, suffix: "", label: "Premium Zones" },
   { value: 300, suffix: "+", label: "Corporate Events / Year" },
 ];
@@ -111,7 +92,7 @@ export const eventCards: EventCard[] = [
   },
   {
     id: "family",
-    title: "Family Entertainment",
+    title: "Entertainment",
     description:
       "A universe of fun for all ages — bowling, arcade, dining and more.",
     image: "/club/club-5.jpg",
@@ -326,7 +307,6 @@ export const navLinks = [
   { label: "Experiences", href: "#experiences" },
   { label: "Gallery", href: "#gallery" },
   { label: "Events", href: "#events" },
-  { label: "FAQ", href: "#faq" },
   { label: "Contact", href: "#contact" },
 ];
 

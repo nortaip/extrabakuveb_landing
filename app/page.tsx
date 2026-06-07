@@ -8,7 +8,6 @@ import WhyExtraBaku from "@/components/sections/WhyExtraBaku";
 import Events from "@/components/sections/Events";
 import Testimonials from "@/components/sections/Testimonials";
 import InstagramWall from "@/components/sections/InstagramWall";
-import Faq from "@/components/sections/Faq";
 import Footer from "@/components/sections/Footer";
 
 export default function Home() {
@@ -25,7 +24,6 @@ export default function Home() {
         <Events />
         <Testimonials />
         <InstagramWall />
-        <Faq />
       </main>
       <Footer />
     </>

@@ -22,9 +22,10 @@ function ExperienceCard({ exp, index }: { exp: Experience; index: number }) {
   // The first card spans wider on large screens for an editorial layout.
   const wide = index === 0;
   return (
-    <motion.article
+    <motion.a
+      href={exp.href}
       variants={fadeUp}
-      className={`group relative overflow-hidden rounded-3xl glass p-7 transition-all duration-500 hover:-translate-y-2 ${accentRing[exp.accent]} ${
+      className={`group relative block overflow-hidden rounded-3xl glass p-7 transition-all duration-500 hover:-translate-y-2 ${accentRing[exp.accent]} ${
         wide ? "sm:col-span-2 lg:col-span-2" : ""
       }`}
     >
@@ -50,7 +51,7 @@ function ExperienceCard({ exp, index }: { exp: Experience; index: number }) {
           →
         </span>
       </span>
-    </motion.article>
+    </motion.a>
   );
 }
 
