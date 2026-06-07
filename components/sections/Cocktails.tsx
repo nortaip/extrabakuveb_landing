@@ -36,34 +36,24 @@ function CocktailCard({ c }: { c: Cocktail }) {
   return (
     <motion.div
       variants={fadeUp}
-      whileHover={{ y: -6 }}
+      whileHover={{ y: -5 }}
       transition={{ type: "spring", stiffness: 300, damping: 22 }}
-      className={`group relative overflow-hidden rounded-3xl border border-white/[0.08] bg-gradient-to-br from-white/[0.05] to-white/[0.01] p-7 backdrop-blur-xl transition-shadow duration-500 ${a.ring}`}
+      className={`group relative flex items-center gap-4 overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-br from-white/[0.05] to-white/[0.01] p-5 backdrop-blur-xl transition-shadow duration-500 ${a.ring}`}
     >
       <div
-        className={`pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full ${a.glow} opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-100`}
+        className={`pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full ${a.glow} opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-100`}
       />
-      <div className="relative z-10 flex items-start justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <span className="text-3xl drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
-            🍸
-          </span>
-          <h3 className="font-heading text-xl font-bold text-white">
-            {c.name}
-          </h3>
-        </div>
-        <span
-          className={`shrink-0 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 font-display text-sm font-bold ${a.text}`}
-        >
-          {c.price}
-        </span>
-      </div>
       <span
-        className={`mt-4 block h-px w-10 rounded-full ${a.dot} transition-all duration-500 group-hover:w-20`}
-      />
-      <p className="mt-4 font-general text-sm leading-relaxed text-white/55">
-        {c.notes}
-      </p>
+        className={`relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/[0.04] text-2xl ${a.text}`}
+      >
+        🍸
+      </span>
+      <div className="relative z-10">
+        <h3 className="font-heading text-lg font-bold text-white">{c.name}</h3>
+        <span
+          className={`mt-1.5 block h-px w-8 rounded-full ${a.dot} transition-all duration-500 group-hover:w-16`}
+        />
+      </div>
     </motion.div>
   );
 }
@@ -111,7 +101,7 @@ export default function Cocktails() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
+          className="mt-16 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
         >
           {cocktails.map((c) => (
             <CocktailCard key={c.id} c={c} />

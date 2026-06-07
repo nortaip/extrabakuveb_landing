@@ -308,54 +308,22 @@ export const menuUrl = "https://senategroup.az/menu/menu.pdf";
 export type Cocktail = {
   id: string;
   name: string;
-  notes: string;
-  price: string;
   accent: "gold" | "royal" | "neon";
 };
 
 export const cocktails: Cocktail[] = [
-  {
-    id: "baku-royale",
-    name: "Baku Royale",
-    notes: "Champagne · saffron · gold leaf · citrus mist",
-    price: "₼28",
-    accent: "gold",
-  },
-  {
-    id: "neon-nights",
-    name: "Neon Nights",
-    notes: "Vodka · blue curaçao · lime · tonic glow",
-    price: "₼22",
-    accent: "neon",
-  },
-  {
-    id: "purple-haze",
-    name: "Purple Haze",
-    notes: "Gin · violet liqueur · wild berries · prosecco",
-    price: "₼24",
-    accent: "royal",
-  },
-  {
-    id: "velvet-noir",
-    name: "Velvet Noir",
-    notes: "Espresso · vanilla vodka · dark cacao",
-    price: "₼25",
-    accent: "gold",
-  },
-  {
-    id: "caspian-sunset",
-    name: "Caspian Sunset",
-    notes: "Aged rum · pomegranate · spiced syrup",
-    price: "₼23",
-    accent: "neon",
-  },
-  {
-    id: "midnight-orchid",
-    name: "Midnight Orchid",
-    notes: "Tequila · elderflower · lychee · smoke",
-    price: "₼26",
-    accent: "royal",
-  },
+  { id: "b52", name: "B-52", accent: "gold" },
+  { id: "blue-lagoon", name: "Blue Lagoon", accent: "neon" },
+  { id: "cosmopolitan", name: "Cosmopolitan", accent: "royal" },
+  { id: "cuba-libre", name: "Cuba Libre", accent: "gold" },
+  { id: "long-island", name: "Long Island Ice Tea", accent: "neon" },
+  { id: "margarita", name: "Margarita", accent: "royal" },
+  { id: "mojito", name: "Mojito", accent: "gold" },
+  { id: "negroni", name: "Negroni", accent: "neon" },
+  { id: "pina-colada", name: "Piña Colada", accent: "royal" },
+  { id: "sex-on-the-beach", name: "Sex on the Beach", accent: "gold" },
+  { id: "white-russian", name: "White Russian", accent: "neon" },
+  { id: "black-russian", name: "Black Russian", accent: "royal" },
 ];
 
 export type NavLink = {
