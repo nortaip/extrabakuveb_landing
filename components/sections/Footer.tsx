@@ -144,11 +144,11 @@ export default function Footer() {
             <span className="font-semibold text-gold-gradient">Senate Group</span>
           </p>
           <div className="flex gap-6 font-general text-xs text-white/40">
-            <a href="#" className="transition-colors hover:text-white/70">
+            <a
+              href="/privacy"
+              className="transition-colors hover:text-white/70"
+            >
               Privacy Policy
-            </a>
-            <a href="#" className="transition-colors hover:text-white/70">
-              Terms of Service
             </a>
           </div>
         </div>

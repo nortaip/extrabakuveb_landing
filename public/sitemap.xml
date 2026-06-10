@@ -23,4 +23,9 @@
       <image:title>Extra Baku Club — DJ və VIP zonalar</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://extrabaku.az/privacy/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>
