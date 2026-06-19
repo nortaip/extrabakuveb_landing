@@ -437,10 +437,12 @@ export const navLinks: NavLink[] = [
 
 export const siteConfig = {
   name: "Extra Baku Club",
+  email: "extraclub.az@gmail.com",
+  phone: "+994 10 222 50 60",
   address: "CV57+44R, Baku",
   hours: [{ day: "Every Day", time: "20:00 — 06:00" }],
   socials: [
-    { label: "Instagram", href: "https://www.instagram.com/extrabaku" },
+    { label: "Instagram", href: "https://www.instagram.com/extra.baku" },
     { label: "TikTok", href: "https://www.tiktok.com/@extrabaku?lang=en" },
     { label: "YouTube", href: "https://www.youtube.com/@extrabaku" },
   ],

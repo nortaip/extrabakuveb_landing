@@ -104,9 +104,25 @@ export default function Footer() {
             <h3 className="font-heading text-sm font-semibold uppercase tracking-[0.16em] text-white">
               Find Us
             </h3>
-            <p className="mt-5 font-general text-sm text-white/70">
-              {siteConfig.address}
-            </p>
+            <ul className="mt-5 flex flex-col gap-2 font-general text-sm">
+              <li className="text-white/70">{siteConfig.address}</li>
+              <li>
+                <a
+                  href={`tel:${siteConfig.phone.replace(/\s/g, "")}`}
+                  className="text-white/55 transition-colors hover:text-gold-light"
+                >
+                  {siteConfig.phone}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  className="break-all text-white/55 transition-colors hover:text-gold-light"
+                >
+                  {siteConfig.email}
+                </a>
+              </li>
+            </ul>
             <div className="group relative mt-4 overflow-hidden rounded-2xl border border-white/10 bg-black/40 shadow-[0_20px_60px_-30px_rgba(0,0,0,0.8)] transition-all duration-300 hover:border-gold/40">
               <div className="relative h-40 w-full">
                 <iframe
