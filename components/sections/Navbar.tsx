@@ -38,7 +38,7 @@ export default function Navbar() {
           </span>
         </a>
 
-        <ul className="hidden items-center gap-8 md:flex">
+        <ul className="hidden items-center gap-6 lg:flex">
           {navLinks.map((link) => (
             <li key={link.href}>
               <a
@@ -56,7 +56,7 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center gap-3 lg:flex">
           {/* Login — guides only (redirects to the guide portal) */}
           <div className="group relative">
             <a
@@ -93,7 +93,7 @@ export default function Navbar() {
           onClick={() => setOpen((v) => !v)}
           aria-label="Toggle menu"
           aria-expanded={open}
-          className="flex h-10 w-10 items-center justify-center rounded-full glass md:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-full glass lg:hidden"
         >
           <span className="relative block h-4 w-5">
             <span
@@ -122,7 +122,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="mx-4 mt-2 overflow-hidden rounded-2xl glass-strong md:hidden"
+            className="mx-4 mt-2 overflow-hidden rounded-2xl glass-strong lg:hidden"
           >
             <ul className="flex flex-col gap-1 p-4">
               {navLinks.map((link) => (

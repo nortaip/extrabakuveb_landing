@@ -11,6 +11,7 @@ import Cocktails from "@/components/sections/Cocktails";
 import Testimonials from "@/components/sections/Testimonials";
 import InstagramWall from "@/components/sections/InstagramWall";
 import Faq from "@/components/sections/Faq";
+import Careers from "@/components/sections/Careers";
 import Footer from "@/components/sections/Footer";
 
 export default function Home() {
@@ -30,6 +31,7 @@ export default function Home() {
         <Testimonials />
         <InstagramWall />
         <Faq />
+        <Careers />
       </main>
       <Footer />
     </>

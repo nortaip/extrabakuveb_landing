@@ -431,8 +431,24 @@ export const navLinks: NavLink[] = [
   { label: "Gallery", href: "#gallery" },
   { label: "Menu", href: menuUrl, external: true },
   { label: "Events", href: "#events" },
+  { label: "Careers", href: "#careers" },
   { label: "FAQ", href: "#faq" },
   { label: "Contact", href: "#contact" },
+];
+
+/** Careers / job applications are sent to this inbox via mailto. */
+export const careersEmail = "extraclub.az@gmail.com";
+
+export const jobPositions = [
+  "Bartender",
+  "Waiter / Waitress",
+  "Bar Manager",
+  "DJ",
+  "Host / Hostess",
+  "Security",
+  "Event Manager",
+  "Marketing & SMM",
+  "Other",
 ];
 
 export const siteConfig = {
