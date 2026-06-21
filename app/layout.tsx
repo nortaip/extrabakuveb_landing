@@ -107,7 +107,7 @@ const jsonLd = {
   description:
     "Extra Baku is the largest premium nightclub in the Caucasus — a luxury nightlife destination in Baku, Azerbaijan with VIP lounges, a premium lounge bar, live DJs, live music, signature cocktails and exclusive events.",
   url: SITE_URL,
-  telephone: "+994 10 222 50 60",
+  telephone: "+994 ",
   email: "extraclub.az@gmail.com",
   image: [`${SITE_URL}/club/club-1.webp`, `${SITE_URL}/club/club-2.webp`],
   logo: `${SITE_URL}/club/club-1.webp`,

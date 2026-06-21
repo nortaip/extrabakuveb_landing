@@ -438,7 +438,7 @@ export const navLinks: NavLink[] = [
 export const siteConfig = {
   name: "Extra Baku Club",
   email: "extraclub.az@gmail.com",
-  phone: "+994 10 222 50 60",
+  phone: "+994 ",
   address: "CV57+44R, Baku",
   hours: [{ day: "Every Day", time: "20:00 — 06:00" }],
   socials: [
