@@ -23,6 +23,8 @@ const initial: Fields = {
   message: "",
 };
 
+const MAX_CV_MB = 8;
+
 const perks = [
   "Competitive pay & tips",
   "Premium, high-energy environment",
@@ -36,7 +38,25 @@ const inputClass =
 export default function Careers() {
   const [fields, setFields] = useState<Fields>(initial);
   const [errors, setErrors] = useState<Errors>({});
+  const [cvName, setCvName] = useState<string>("");
+  const [cvError, setCvError] = useState<string>("");
   const [sent, setSent] = useState(false);
+
+  const onCvChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) {
+      setCvName("");
+      return;
+    }
+    if (file.size > MAX_CV_MB * 1024 * 1024) {
+      setCvError(`File is too large (max ${MAX_CV_MB} MB).`);
+      setCvName("");
+      e.target.value = "";
+      return;
+    }
+    setCvError("");
+    setCvName(file.name);
+  };
 
   const update = (key: keyof Fields, value: string) => {
     setFields((f) => ({ ...f, [key]: value }));
@@ -62,6 +82,7 @@ export default function Careers() {
       `Position: ${fields.position}`,
       `Name: ${fields.name}`,
       `Contact: ${fields.contact}`,
+      `CV / Resume: ${cvName ? `${cvName} (please attach this file before sending)` : "to be attached"}`,
       "",
       "About me:",
       fields.message || "—",
@@ -140,13 +161,18 @@ export default function Careers() {
                 </h3>
                 <p className="mt-3 max-w-sm font-general text-white/60">
                   Your email app should have opened with your application ready
-                  to send to {careersEmail}. Just hit send and we&apos;ll be in
-                  touch.
+                  to send to {careersEmail}.{" "}
+                  {cvName
+                    ? "Don't forget to attach your CV, then hit send."
+                    : "Attach your CV, then hit send."}{" "}
+                  We&apos;ll be in touch.
                 </p>
                 <button
                   onClick={() => {
                     setSent(false);
                     setFields(initial);
+                    setCvName("");
+                    setCvError("");
                   }}
                   className="mt-7 rounded-full glass px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
                 >
@@ -214,6 +240,40 @@ export default function Careers() {
                   </select>
                 </motion.label>
 
+                <motion.div variants={fadeUp}>
+                  <span className="mb-2 block font-general text-xs font-medium uppercase tracking-[0.16em] text-white/50">
+                    CV / Resume
+                  </span>
+                  <label className="group flex cursor-pointer items-center gap-4 rounded-xl border border-dashed border-white/15 bg-white/[0.03] px-4 py-4 transition-all duration-300 hover:border-gold/50 hover:bg-white/[0.05]">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gold/10 text-gold">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="17 8 12 3 7 8" />
+                        <line x1="12" y1="3" x2="12" y2="15" />
+                      </svg>
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block truncate font-general text-sm text-white/80">
+                        {cvName || "Upload your CV (PDF, DOC — max 8 MB)"}
+                      </span>
+                      <span className="block font-general text-xs text-white/40">
+                        {cvName ? "File selected · tap to change" : "Click to choose a file"}
+                      </span>
+                    </span>
+                    <input
+                      type="file"
+                      accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                      onChange={onCvChange}
+                      className="sr-only"
+                    />
+                  </label>
+                  {cvError && (
+                    <span className="mt-1.5 block text-xs text-rose-400">
+                      {cvError}
+                    </span>
+                  )}
+                </motion.div>
+
                 <motion.label variants={fadeUp} className="block">
                   <span className="mb-2 block font-general text-xs font-medium uppercase tracking-[0.16em] text-white/50">
                     About You / Experience
@@ -236,8 +296,9 @@ export default function Careers() {
                   Apply Now
                 </motion.button>
                 <p className="text-center font-general text-xs text-white/40">
-                  Your application opens in your email app and is sent to{" "}
-                  {careersEmail}.
+                  Your application opens in your email app, addressed to{" "}
+                  {careersEmail}. Please attach your selected CV file before
+                  sending.
                 </p>
               </motion.form>
             )}

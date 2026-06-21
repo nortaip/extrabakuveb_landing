@@ -45,6 +45,9 @@ export const metadata: Metadata = {
   creator: "Extra Baku Club",
   publisher: "Extra Baku Club",
   applicationName: "Extra Baku Club",
+  other: {
+    developer: "Developed by Asif Nasrullazade",
+  },
   formatDetection: { email: false, address: false, telephone: false },
   openGraph: {
     type: "website",
