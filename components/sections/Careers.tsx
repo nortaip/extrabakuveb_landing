@@ -35,27 +35,43 @@ const perks = [
 const inputClass =
   "w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 font-general text-white placeholder:text-white/30 outline-none transition-all duration-300 focus:border-gold/50 focus:bg-white/[0.06] focus:shadow-glow-gold";
 
+/**
+ * Web3Forms access key (free, no backend — emails submissions + attachments
+ * straight to extraclub.az@gmail.com). Get a key in 1 minute at
+ * https://web3forms.com using extraclub.az@gmail.com, then set
+ * NEXT_PUBLIC_WEB3FORMS_KEY (or replace the fallback string below).
+ * Until a real key is set, the form falls back to opening the mail client.
+ */
+const WEB3FORMS_ACCESS_KEY =
+  process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "YOUR_WEB3FORMS_ACCESS_KEY";
+
+type Status = "idle" | "submitting" | "success" | "error";
+
 export default function Careers() {
   const [fields, setFields] = useState<Fields>(initial);
   const [errors, setErrors] = useState<Errors>({});
   const [cvName, setCvName] = useState<string>("");
+  const [cvFile, setCvFile] = useState<File | null>(null);
   const [cvError, setCvError] = useState<string>("");
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
 
   const onCvChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) {
       setCvName("");
+      setCvFile(null);
       return;
     }
     if (file.size > MAX_CV_MB * 1024 * 1024) {
       setCvError(`File is too large (max ${MAX_CV_MB} MB).`);
       setCvName("");
+      setCvFile(null);
       e.target.value = "";
       return;
     }
     setCvError("");
     setCvName(file.name);
+    setCvFile(file);
   };
 
   const update = (key: keyof Fields, value: string) => {
@@ -71,13 +87,10 @@ export default function Careers() {
     return e;
   };
 
-  const onSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    const found = validate(fields);
-    setErrors(found);
-    if (Object.keys(found).length > 0) return;
+  const subjectLine = () =>
+    `Job Application — ${fields.position} — ${fields.name}`;
 
-    const subject = `Job Application — ${fields.position} — ${fields.name}`;
+  const openMailto = () => {
     const body = [
       `Position: ${fields.position}`,
       `Name: ${fields.name}`,
@@ -89,13 +102,53 @@ export default function Careers() {
       "",
       "— Sent from extrabaku.az careers",
     ].join("\n");
-
-    // Static site: open the visitor's mail client pre-addressed to HR.
     window.location.href = `mailto:${careersEmail}?subject=${encodeURIComponent(
-      subject
+      subjectLine()
     )}&body=${encodeURIComponent(body)}`;
-    setSent(true);
   };
+
+  const onSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    const found = validate(fields);
+    setErrors(found);
+    if (Object.keys(found).length > 0) return;
+
+    // No key configured yet → fall back to the user's mail client.
+    if (WEB3FORMS_ACCESS_KEY === "YOUR_WEB3FORMS_ACCESS_KEY") {
+      openMailto();
+      setStatus("success");
+      return;
+    }
+
+    setStatus("submitting");
+    try {
+      const data = new FormData();
+      data.append("access_key", WEB3FORMS_ACCESS_KEY);
+      data.append("subject", subjectLine());
+      data.append("from_name", "Extra Baku Careers");
+      data.append("Position", fields.position);
+      data.append("Name", fields.name);
+      data.append("Contact", fields.contact);
+      data.append("email", fields.contact);
+      data.append("Message", fields.message || "—");
+      if (cvFile) data.append("attachment", cvFile, cvFile.name);
+
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: data,
+      });
+      const json = await res.json();
+      if (json.success) {
+        setStatus("success");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
+
+  const autoSend = WEB3FORMS_ACCESS_KEY !== "YOUR_WEB3FORMS_ACCESS_KEY";
 
   return (
     <section id="careers" className="relative overflow-hidden section-pad scroll-mt-24">
@@ -140,7 +193,7 @@ export default function Careers() {
           className="relative rounded-[2rem] glass-strong p-7 sm:p-9"
         >
           <AnimatePresence mode="wait">
-            {sent ? (
+            {status === "success" ? (
               <motion.div
                 key="sent"
                 initial={{ opacity: 0, scale: 0.94 }}
@@ -157,21 +210,31 @@ export default function Careers() {
                   ✓
                 </motion.span>
                 <h3 className="font-display text-2xl font-bold text-white">
-                  Almost there!
+                  {autoSend ? "Application sent!" : "Almost there!"}
                 </h3>
                 <p className="mt-3 max-w-sm font-general text-white/60">
-                  Your email app should have opened with your application ready
-                  to send to {careersEmail}.{" "}
-                  {cvName
-                    ? "Don't forget to attach your CV, then hit send."
-                    : "Attach your CV, then hit send."}{" "}
-                  We&apos;ll be in touch.
+                  {autoSend ? (
+                    <>
+                      Thank you, {fields.name.split(" ")[0] || "there"}! Your
+                      application{cvName ? " and CV" : ""} has been sent to{" "}
+                      {careersEmail}. Our team will be in touch soon.
+                    </>
+                  ) : (
+                    <>
+                      Your email app should have opened with your application
+                      ready to send to {careersEmail}.{" "}
+                      {cvName
+                        ? "Don't forget to attach your CV, then hit send."
+                        : "Attach your CV, then hit send."}
+                    </>
+                  )}
                 </p>
                 <button
                   onClick={() => {
-                    setSent(false);
+                    setStatus("idle");
                     setFields(initial);
                     setCvName("");
+                    setCvFile(null);
                     setCvError("");
                   }}
                   className="mt-7 rounded-full glass px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
@@ -287,18 +350,36 @@ export default function Careers() {
                   />
                 </motion.label>
 
+                {status === "error" && (
+                  <motion.p
+                    variants={fadeUp}
+                    className="rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-center text-sm text-rose-300"
+                  >
+                    Something went wrong sending your application. Please try
+                    again or email us directly at {careersEmail}.
+                  </motion.p>
+                )}
+
                 <motion.button
                   variants={fadeUp}
                   type="submit"
+                  disabled={status === "submitting"}
                   whileTap={{ scale: 0.97 }}
-                  className="mt-1 flex items-center justify-center gap-2 rounded-full bg-gold-gradient px-8 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-ink-900 shadow-glow-gold transition-transform hover:scale-[1.02]"
+                  className="mt-1 flex items-center justify-center gap-2 rounded-full bg-gold-gradient px-8 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-ink-900 shadow-glow-gold transition-transform hover:scale-[1.02] disabled:opacity-70"
                 >
-                  Apply Now
+                  {status === "submitting" ? (
+                    <>
+                      <span className="h-4 w-4 animate-spin rounded-full border-2 border-ink-900/30 border-t-ink-900" />
+                      Sending...
+                    </>
+                  ) : (
+                    "Apply Now"
+                  )}
                 </motion.button>
                 <p className="text-center font-general text-xs text-white/40">
-                  Your application opens in your email app, addressed to{" "}
-                  {careersEmail}. Please attach your selected CV file before
-                  sending.
+                  {autoSend
+                    ? `Your application and CV are sent directly to ${careersEmail}.`
+                    : `Your application opens in your email app, addressed to ${careersEmail}. Please attach your CV before sending.`}
                 </p>
               </motion.form>
             )}
