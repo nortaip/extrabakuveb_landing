@@ -15,7 +15,7 @@ type Fields = {
 };
 
 type Errors = Partial<Record<keyof Fields, string>>;
-type Status = "idle" | "submitting" | "success";
+type Status = "idle" | "submitting" | "success" | "error";
 
 const initial: Fields = {
   name: "",
@@ -24,12 +24,17 @@ const initial: Fields = {
   message: "",
 };
 
-const MAX_CV_MB = 8;
+const MAX_CV_MB = 5;
 
-// FormSubmit: no API key, no backend — emails the application + CV attachment
-// straight to the inbox. The very first submission triggers a one-time
-// activation email to careersEmail (click the link once to start receiving).
-const FORM_ENDPOINT = `https://formsubmit.co/${careersEmail}`;
+/**
+ * Web3Forms reliably emails the application AND the CV attachment straight to
+ * extraclub.az@gmail.com — no backend. Get a free key in ~1 min at
+ * https://web3forms.com (enter extraclub.az@gmail.com), then set
+ * NEXT_PUBLIC_WEB3FORMS_KEY or replace the fallback string below.
+ */
+const WEB3FORMS_KEY =
+  process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "YOUR_WEB3FORMS_ACCESS_KEY";
+const KEY_READY = WEB3FORMS_KEY !== "YOUR_WEB3FORMS_ACCESS_KEY";
 
 const perks = [
   "Competitive pay & tips",
@@ -45,26 +50,29 @@ export default function Careers() {
   const [fields, setFields] = useState<Fields>(initial);
   const [errors, setErrors] = useState<Errors>({});
   const [cvName, setCvName] = useState("");
+  const [cvFile, setCvFile] = useState<File | null>(null);
   const [cvError, setCvError] = useState("");
   const [status, setStatus] = useState<Status>("idle");
 
   const fileRef = useRef<HTMLInputElement>(null);
-  const submittedRef = useRef(false);
 
   const onCvChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) {
       setCvName("");
+      setCvFile(null);
       return;
     }
     if (file.size > MAX_CV_MB * 1024 * 1024) {
       setCvError(`File is too large (max ${MAX_CV_MB} MB).`);
       setCvName("");
+      setCvFile(null);
       e.target.value = "";
       return;
     }
     setCvError("");
     setCvName(file.name);
+    setCvFile(file);
   };
 
   const update = (key: keyof Fields, value: string) => {
@@ -80,31 +88,64 @@ export default function Careers() {
     return e;
   };
 
-  // Native form posts (multipart, with the CV) into a hidden iframe so the
-  // page never navigates. We flip to "success" when the iframe response loads.
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-    const found = validate(fields);
-    if (Object.keys(found).length > 0) {
-      e.preventDefault();
-      setErrors(found);
-      return;
-    }
-    setErrors({});
-    submittedRef.current = true;
-    setStatus("submitting");
-    // do NOT preventDefault — let the browser submit to FormSubmit.
+  const openMailto = () => {
+    const body = [
+      `Position: ${fields.position}`,
+      `Name: ${fields.name}`,
+      `Contact: ${fields.contact}`,
+      `CV: ${cvName ? `${cvName} (please attach before sending)` : "to be attached"}`,
+      "",
+      fields.message || "—",
+    ].join("\n");
+    window.location.href = `mailto:${careersEmail}?subject=${encodeURIComponent(
+      `Job Application — ${fields.position} — ${fields.name}`
+    )}&body=${encodeURIComponent(body)}`;
   };
 
-  const onIframeLoad = () => {
-    if (!submittedRef.current) return;
-    submittedRef.current = false;
-    setStatus("success");
+  const onSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    const found = validate(fields);
+    setErrors(found);
+    if (Object.keys(found).length > 0) return;
+
+    // No key yet → fall back to the mail client so it still works.
+    if (!KEY_READY) {
+      openMailto();
+      setStatus("success");
+      return;
+    }
+
+    setStatus("submitting");
+    try {
+      const data = new FormData();
+      data.append("access_key", WEB3FORMS_KEY);
+      data.append(
+        "subject",
+        `New Job Application — ${fields.position} — ${fields.name}`
+      );
+      data.append("from_name", "Extra Baku Careers");
+      data.append("Position", fields.position);
+      data.append("Name", fields.name);
+      data.append("Contact", fields.contact);
+      data.append("Message", fields.message || "—");
+      if (cvFile) data.append("attachment", cvFile, cvFile.name);
+
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: data,
+      });
+      const json = await res.json();
+      setStatus(json.success ? "success" : "error");
+    } catch {
+      setStatus("error");
+    }
   };
 
   const reset = () => {
     setStatus("idle");
     setFields(initial);
     setCvName("");
+    setCvFile(null);
     setCvError("");
     if (fileRef.current) fileRef.current.value = "";
   };
@@ -115,15 +156,6 @@ export default function Careers() {
       className="relative overflow-hidden section-pad scroll-mt-24"
     >
       <GradientOrbs />
-
-      {/* Hidden target so submitting never navigates the page */}
-      <iframe
-        name="careers_iframe"
-        title="Careers submission"
-        onLoad={onIframeLoad}
-        className="hidden"
-        aria-hidden
-      />
 
       <div className="container-max relative z-10 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
         {/* Left: pitch */}
@@ -182,12 +214,21 @@ export default function Careers() {
                   ✓
                 </motion.span>
                 <h3 className="font-display text-2xl font-bold text-white">
-                  Application sent!
+                  {KEY_READY ? "Application sent!" : "Almost there!"}
                 </h3>
                 <p className="mt-3 max-w-sm font-general text-white/60">
-                  Thank you, {fields.name.split(" ")[0] || "there"}! Your
-                  application{cvName ? " and CV" : ""} has been sent to{" "}
-                  {careersEmail}. Our team will be in touch soon.
+                  {KEY_READY ? (
+                    <>
+                      Thank you, {fields.name.split(" ")[0] || "there"}! Your
+                      application{cvName ? " and CV" : ""} has been sent to{" "}
+                      {careersEmail}. Our team will be in touch soon.
+                    </>
+                  ) : (
+                    <>
+                      Your email app opened with your application, addressed to{" "}
+                      {careersEmail}. Please attach your CV and hit send.
+                    </>
+                  )}
                 </p>
                 <button
                   onClick={reset}
@@ -199,40 +240,17 @@ export default function Careers() {
             ) : (
               <motion.form
                 key="form"
-                action={FORM_ENDPOINT}
-                method="POST"
-                encType="multipart/form-data"
-                target="careers_iframe"
                 onSubmit={onSubmit}
                 noValidate
                 className="flex flex-col gap-5"
                 exit={{ opacity: 0 }}
               >
-                {/* FormSubmit config */}
-                <input
-                  type="hidden"
-                  name="_subject"
-                  value="New Job Application — Extra Baku"
-                />
-                <input type="hidden" name="_captcha" value="false" />
-                <input type="hidden" name="_template" value="table" />
-                {/* honeypot */}
-                <input
-                  type="text"
-                  name="_honey"
-                  tabIndex={-1}
-                  autoComplete="off"
-                  className="hidden"
-                  aria-hidden
-                />
-
                 <motion.label variants={fadeUp} className="block">
                   <span className="mb-2 block font-general text-xs font-medium uppercase tracking-[0.16em] text-white/50">
                     Full Name
                   </span>
                   <input
                     type="text"
-                    name="name"
                     value={fields.name}
                     onChange={(e) => update("name", e.target.value)}
                     placeholder="Your name"
@@ -251,7 +269,6 @@ export default function Careers() {
                   </span>
                   <input
                     type="text"
-                    name="contact"
                     value={fields.contact}
                     onChange={(e) => update("contact", e.target.value)}
                     placeholder="you@email.com / +994 ..."
@@ -269,7 +286,6 @@ export default function Careers() {
                     Position
                   </span>
                   <select
-                    name="position"
                     value={fields.position}
                     onChange={(e) => update("position", e.target.value)}
                     className={`${inputClass} [color-scheme:dark]`}
@@ -296,7 +312,7 @@ export default function Careers() {
                     </span>
                     <span className="min-w-0 flex-1">
                       <span className="block truncate font-general text-sm text-white/80">
-                        {cvName || "Upload your CV (PDF, DOC — max 8 MB)"}
+                        {cvName || "Upload your CV (PDF, DOC — max 5 MB)"}
                       </span>
                       <span className="block font-general text-xs text-white/40">
                         {cvName
@@ -307,7 +323,6 @@ export default function Careers() {
                     <input
                       ref={fileRef}
                       type="file"
-                      name="attachment"
                       accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                       onChange={onCvChange}
                       className="sr-only"
@@ -325,7 +340,6 @@ export default function Careers() {
                     About You / Experience
                   </span>
                   <textarea
-                    name="message"
                     rows={4}
                     value={fields.message}
                     onChange={(e) => update("message", e.target.value)}
@@ -333,6 +347,16 @@ export default function Careers() {
                     className={`${inputClass} resize-none`}
                   />
                 </motion.label>
+
+                {status === "error" && (
+                  <motion.p
+                    variants={fadeUp}
+                    className="rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-center text-sm text-rose-300"
+                  >
+                    Something went wrong. Please try again or email us at{" "}
+                    {careersEmail}.
+                  </motion.p>
+                )}
 
                 <motion.button
                   variants={fadeUp}
