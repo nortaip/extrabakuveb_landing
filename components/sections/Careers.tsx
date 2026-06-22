@@ -33,7 +33,8 @@ const MAX_CV_MB = 5;
  * NEXT_PUBLIC_WEB3FORMS_KEY or replace the fallback string below.
  */
 const WEB3FORMS_KEY =
-  process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "YOUR_WEB3FORMS_ACCESS_KEY";
+  process.env.NEXT_PUBLIC_WEB3FORMS_KEY ||
+  "0eeaddc7-fb36-4a08-93d7-4f746f1c7274";
 const KEY_READY = WEB3FORMS_KEY !== "YOUR_WEB3FORMS_ACCESS_KEY";
 
 const perks = [
@@ -242,8 +243,11 @@ export default function Careers() {
                 key="form"
                 onSubmit={onSubmit}
                 noValidate
-                className="flex flex-col gap-5"
+                variants={staggerContainer}
+                initial="hidden"
+                animate="visible"
                 exit={{ opacity: 0 }}
+                className="flex flex-col gap-5"
               >
                 <motion.label variants={fadeUp} className="block">
                   <span className="mb-2 block font-general text-xs font-medium uppercase tracking-[0.16em] text-white/50">
