@@ -26,16 +26,11 @@ const initial: Fields = {
 
 const MAX_CV_MB = 5;
 
-/**
- * Web3Forms reliably emails the application AND the CV attachment straight to
- * extraclub.az@gmail.com — no backend. Get a free key in ~1 min at
- * https://web3forms.com (enter extraclub.az@gmail.com), then set
- * NEXT_PUBLIC_WEB3FORMS_KEY or replace the fallback string below.
- */
-const WEB3FORMS_KEY =
-  process.env.NEXT_PUBLIC_WEB3FORMS_KEY ||
-  "0eeaddc7-fb36-4a08-93d7-4f746f1c7274";
-const KEY_READY = WEB3FORMS_KEY !== "YOUR_WEB3FORMS_ACCESS_KEY";
+// PHP endpoint that receives the application + CV and emails it server-side.
+// Defaults to /apply.php (same domain). If your PHP lives on another host,
+// set NEXT_PUBLIC_APPLY_ENDPOINT to its full URL.
+const APPLY_ENDPOINT =
+  process.env.NEXT_PUBLIC_APPLY_ENDPOINT || "/apply.php";
 
 const perks = [
   "Competitive pay & tips",
@@ -89,53 +84,24 @@ export default function Careers() {
     return e;
   };
 
-  const openMailto = () => {
-    const body = [
-      `Position: ${fields.position}`,
-      `Name: ${fields.name}`,
-      `Contact: ${fields.contact}`,
-      `CV: ${cvName ? `${cvName} (please attach before sending)` : "to be attached"}`,
-      "",
-      fields.message || "—",
-    ].join("\n");
-    window.location.href = `mailto:${careersEmail}?subject=${encodeURIComponent(
-      `Job Application — ${fields.position} — ${fields.name}`
-    )}&body=${encodeURIComponent(body)}`;
-  };
-
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const found = validate(fields);
     setErrors(found);
     if (Object.keys(found).length > 0) return;
 
-    // No key yet → fall back to the mail client so it still works.
-    if (!KEY_READY) {
-      openMailto();
-      setStatus("success");
-      return;
-    }
-
     setStatus("submitting");
     try {
       const data = new FormData();
-      data.append("access_key", WEB3FORMS_KEY);
-      data.append(
-        "subject",
-        `New Job Application — ${fields.position} — ${fields.name}`
-      );
-      data.append("from_name", "Extra Baku Careers");
-      data.append("Position", fields.position);
-      data.append("Name", fields.name);
-      data.append("Contact", fields.contact);
-      data.append("Message", fields.message || "—");
+      data.append("name", fields.name);
+      data.append("contact", fields.contact);
+      data.append("position", fields.position);
+      data.append("message", fields.message);
+      data.append("_honey", ""); // honeypot
       if (cvFile) data.append("attachment", cvFile, cvFile.name);
 
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: data,
-      });
-      const json = await res.json();
+      const res = await fetch(APPLY_ENDPOINT, { method: "POST", body: data });
+      const json = await res.json().catch(() => ({ success: res.ok }));
       setStatus(json.success ? "success" : "error");
     } catch {
       setStatus("error");
@@ -215,21 +181,12 @@ export default function Careers() {
                   ✓
                 </motion.span>
                 <h3 className="font-display text-2xl font-bold text-white">
-                  {KEY_READY ? "Application sent!" : "Almost there!"}
+                  Application sent!
                 </h3>
                 <p className="mt-3 max-w-sm font-general text-white/60">
-                  {KEY_READY ? (
-                    <>
-                      Thank you, {fields.name.split(" ")[0] || "there"}! Your
-                      application{cvName ? " and CV" : ""} has been sent to{" "}
-                      {careersEmail}. Our team will be in touch soon.
-                    </>
-                  ) : (
-                    <>
-                      Your email app opened with your application, addressed to{" "}
-                      {careersEmail}. Please attach your CV and hit send.
-                    </>
-                  )}
+                  Thank you, {fields.name.split(" ")[0] || "there"}! Your
+                  application{cvName ? " and CV" : ""} has been sent to{" "}
+                  {careersEmail}. Our team will be in touch soon.
                 </p>
                 <button
                   onClick={reset}
